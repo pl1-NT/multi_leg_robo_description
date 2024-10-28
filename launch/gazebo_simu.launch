@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+  <arg name="p_value" default="50.0" />
+  <arg name="i_value" default="0.01" />
+  <arg name="d_value" default="1.0" />
+  <arg name="i_clamp_value" default="3.0" />
+  <arg name="myrobot" default="$(find multi_legged_robo_description)/urdf/robot/robot.urdf"/>   
+  <param name="robot_description" command="$(find xacro)/xacro $(find multi_legged_robo_description)/urdf/robot/robot.urdf.xacro"/>
+  <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model myrobot" />
+  
+  <rosparam>
+    myrobot:      
+      
+      leg1_A_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg1_A_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+      
+      leg2_A_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg2_A_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg3_A_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg3_A_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg4_A_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg4_A_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg5_A_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg5_A_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg6_A_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg6_A_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg1_B_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg1_B_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+      
+      leg2_B_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg2_B_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg3_B_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg3_B_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg4_B_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg4_B_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg5_B_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg5_B_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg6_B_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg6_B_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg1_C_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg1_C_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+      
+      leg2_C_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg2_C_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg3_C_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg3_C_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg4_C_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg4_C_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg5_C_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg5_C_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      leg6_C_joint_position_controller:
+        type: position_controllers/JointPositionController
+        joint: leg6_C_joint
+        pid: {p: $(arg p_value), d: $(arg d_value), i: $(arg i_value), i_clamp: $(arg i_clamp_value)}
+        
+      joint_state_controller:
+        type: joint_state_controller/JointStateController
+        publish_rate: 30  
+  
+  </rosparam>
+  
+
+  
+  <node name="controller_spawner" pkg="controller_manager"
+        type="spawner" respawn="false"
+        output="screen" ns="/myrobot"
+        args=" leg1_A_joint_position_controller leg2_A_joint_position_controller leg3_A_joint_position_controller leg4_A_joint_position_controller leg5_A_joint_position_controller leg6_A_joint_position_controller leg1_B_joint_position_controller leg2_B_joint_position_controller leg3_B_joint_position_controller leg4_B_joint_position_controller leg5_B_joint_position_controller leg6_B_joint_position_controller leg1_C_joint_position_controller leg2_C_joint_position_controller leg3_C_joint_position_controller leg4_C_joint_position_controller leg5_C_joint_position_controller leg6_C_joint_position_controller joint_state_controller "/>
+  
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+
+        
+        
+</launch>
+

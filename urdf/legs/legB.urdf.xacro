@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+	  <xacro:macro name="legB" params="prefix parent *joint_origin *joint_axis">
+	    <joint name="leg${prefix}_B_joint" type="revolute">
+	      <xacro:insert_block name="joint_origin" />
+	      <xacro:insert_block name="joint_axis" />
+	      <limit effort="100" lower="-1.6" upper="1.6" velocity="10"/>
+	      <parent link="${parent}" />
+	      <child link="leg${prefix}_B_link" />
+	    </joint>
+	    
+	    <transmission name="legB_trans">
+	      <type>transmission_interface/SimpleTransmission</type>
+	      <joint name="leg${prefix}_B_joint">
+	        <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	      </joint>
+	      <actuator name="legB_motor">
+	        <hardwareInterface>hardware_interface/PositionointInterface</hardwareInterface>
+	        <mechanismReduction>1</mechanismReduction>
+	      </actuator>
+	    </transmission>
+	    
+	    <link name="leg${prefix}_B_link">
+	      <visual>
+	        <geometry>
+	          <mesh filename="file://$(find multi_legged_robo_description)/meshes/second_link.stl"/>
+	        </geometry>
+	      </visual>
+	      
+	      <collision>
+	        <geometry>
+	          <mesh filename="file://$(find multi_legged_robo_description)/meshes/second_link.dae"/>
+	        </geometry>
+	      </collision>
+	      
+	      <inertial>
+	        <origin xyz="0 -0.0015 -0.0014" />
+	        <mass value="0.022"/>
+	        <inertia ixx="0.000005" ixy="0.0" ixz="0.0" iyy="0.00001" iyz="0.0" izz="0.000013" />
+	      </inertial>
+	    </link>
+		<gazebo reference="leg${prefix}_B_link">
+			<material>Gazebo/Red</material>
+			<turnGravityOff>false</turnGravityOff>
+		</gazebo>
+		
+	  </xacro:macro>
+	  
+	  
+	  
+	  
+</robot>
+

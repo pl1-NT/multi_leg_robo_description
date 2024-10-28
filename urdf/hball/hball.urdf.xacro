@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+         
+	  <xacro:macro name="hball" params="number parent *joint_origin">
+	    <joint name="${number}" type="revolute">
+	      <dynamics damping="0.8"/>
+	      <limit effort="0" lower="0" upper="0" velocity="0"/> 
+	      <xacro:insert_block name="joint_origin" />
+	      <parent link="${parent}" />
+	      <child link="hball_${number}_link" />
+	    </joint>
+	    
+	    <link name="hball_${number}_link">
+	      <visual>
+	        <geometry>
+	          <mesh filename="file://$(find multi_legged_robo_description)/meshes/hball.stl"/>
+	        </geometry>
+	      </visual>
+	      
+	      <collision>
+	        <geometry>
+	          <mesh filename="file://$(find multi_legged_robo_description)/meshes/hball.dae"/>
+	        </geometry>
+	      </collision>
+	      
+	      <inertial>
+	        <origin xyz="0 0 -0.03" />
+	        <mass value="0.5"/>
+	        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+	      </inertial>
+	    </link>
+		<gazebo reference="hball_${number}_link">
+			<material>Gazebo/Red</material>
+			<turnGravityOff>false</turnGravityOff>
+			<mu1 value="1.0"/>
+                       <mu2 value="1.0"/>
+		</gazebo>
+		
+	  </xacro:macro>
+	  
+  
+	  
+</robot>
+

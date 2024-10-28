@@ -1,0 +1,156 @@
+<?xml version="1.0"?>
+	<robot name="myrobot" xmlns:xacro="http://ros.org/wiki/xacro">
+	  <xacro:include filename="$(find multi_legged_robo_description)/urdf/common/common.urdf.xacro"/>
+	   <xacro:include filename="$(find multi_legged_robo_description)/urdf/chassis/chassis.urdf.xacro"/>
+	  <xacro:include filename="$(find multi_legged_robo_description)/urdf/legs/legA.urdf.xacro"/>
+	  <xacro:include filename="$(find multi_legged_robo_description)/urdf/legs/legB.urdf.xacro"/>
+	  <xacro:include filename="$(find multi_legged_robo_description)/urdf/legs/legC.urdf.xacro"/>
+	  <xacro:include filename="$(find multi_legged_robo_description)/urdf/hball/hball.urdf.xacro"/>
+	  <xacro:include filename="$(find multi_legged_robo_description)/urdf/just_object/object.urdf.xacro"/>
+	  		
+	  <link name="base_footprint"/>
+	  
+	
+	  <xacro:chassis parent="base_footprint">
+	    <origin xyz="0 0 0 "  rpy="0 0 0"/>
+	  </xacro:chassis>
+	  
+	  <xacro:object parent="chassis_link"  direction="front" >
+	    <origin xyz= "-0.1 0 0.0186" />
+	  </xacro:object>
+	  
+	  <xacro:object parent="chassis_link"  direction="back" >
+	    <origin xyz= "0.1 0 0.0186" />
+	  </xacro:object>	  
+
+	  <xacro:legA prefix="1" parent="chassis_link" >
+	   <origin xyz="0 -0.08 0" rpy="0 0 0"/>
+	   <axis xyz=" 0 0 1" />
+	  </xacro:legA> 
+	    
+	  <xacro:legB prefix="1" parent="leg1_A_link">
+	    <origin xyz="0 -0.0509 0" rpy="0 0 0"/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legB>
+	  
+	  <xacro:legC prefix="1" parent="leg1_B_link">
+	    <origin xyz="0 -0.0669 0" rpy="-0.62 0 0"/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legC>
+	  
+	  
+	  
+	  <xacro:legA prefix="2" parent="chassis_link" >
+	   <origin xyz="0 0.08 0 " rpy=" 0 0 3.14"/>
+	   <axis xyz=" 0 0 1" />
+	  </xacro:legA> 
+	    
+	  <xacro:legB prefix="2" parent="leg2_A_link">
+	    <origin xyz="0 -0.0509 0" rpy="0 0 0"/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legB>
+	  
+	  <xacro:legC prefix="2" parent="leg2_B_link">
+	    <origin xyz="0 -0.0669 0" rpy="-0.62 0 0"/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legC>
+	  
+	  
+	  <xacro:legA prefix="3" parent="chassis_link" >
+	   <origin xyz="0.098 -0.056 0.0 " rpy=" 0 0 0"/>
+	   <axis xyz=" 0 0 1" />
+	  </xacro:legA> 
+	    
+	  <xacro:legB prefix="3" parent="leg3_A_link">
+	    <origin xyz="0 -0.0509 0" rpy="0 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legB>
+	  
+	  <xacro:legC prefix="3" parent="leg3_B_link">
+	    <origin xyz="0 -0.067 0" rpy="-0.62 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legC>
+	  
+	  
+	  <xacro:legA prefix="4" parent="chassis_link" >
+	   <origin xyz="0.098 0.056 0 " rpy=" 0 0 3.14"/>
+	   <axis xyz=" 0 0 1" />
+	  </xacro:legA> 
+	    
+	  <xacro:legB prefix="4" parent="leg4_A_link">
+	    <origin xyz="0 -0.0509 0" rpy="0 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legB>
+	  
+	  <xacro:legC prefix="4" parent="leg4_B_link">
+	    <origin xyz="0 -0.067 0" rpy="-0.62 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legC>
+	  
+	  
+	  <xacro:legA prefix="5" parent="chassis_link" >
+	   <origin xyz="-0.098 -0.056 0.0 " rpy=" 0 0 0"/>
+	   <axis xyz=" 0 0 1" />
+	  </xacro:legA> 
+	    
+	  <xacro:legB prefix="5" parent="leg5_A_link">
+	    <origin xyz="0 -0.0509 0" rpy="0 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legB>
+	  
+	  <xacro:legC prefix="5" parent="leg5_B_link">
+	    <origin xyz="0 -0.067 0" rpy="-0.62 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legC>
+	  
+	  
+	  <xacro:legA prefix="6" parent="chassis_link" >
+	   <origin xyz="-0.098 0.056 0.0 " rpy=" 0 0 3.14"/>
+	   <axis xyz=" 0 0 1" />
+	  </xacro:legA> 
+	    
+	  <xacro:legB prefix="6" parent="leg6_A_link">
+	    <origin xyz="0 -0.0509 0" rpy="0 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legB>
+	  
+	  <xacro:legC prefix="6" parent="leg6_B_link">
+	    <origin xyz="0 -0.067 0" rpy="-0.62 0 0 "/>
+	    <axis xyz=" 1 0 0" />
+	  </xacro:legC>
+	  
+	  <xacro:hball number="1" parent="leg1_C_link">
+	    <origin xyz="0 -0.082 -0.058" rpy="-0.17 0 0 " scale="1.5 1.5 1.5"/>
+	  </xacro:hball>
+	  
+	  <xacro:hball number="2" parent="leg2_C_link">
+	    <origin xyz="0 -0.082 -0.058" rpy="0.17 0 0 "/>
+	  </xacro:hball>
+	  
+	  <xacro:hball number="3" parent="leg3_C_link">
+	    <origin xyz="0 -0.082 -0.058" rpy="-0.17 0 0 "/>
+	  </xacro:hball>
+	  
+	  <xacro:hball number="4" parent="leg4_C_link">
+	    <origin xyz="0 -0.082 -0.058" rpy="0.17 0 0 "/>
+	  </xacro:hball>
+	  
+	  <xacro:hball number="5" parent="leg5_C_link">
+	    <origin xyz="0 -0.082 -0.058" rpy="-0.17 0 0 "/>
+	  </xacro:hball>
+	  
+	  <xacro:hball number="6" parent="leg6_C_link">
+	    <origin xyz="0 -0.082 -0.058" rpy="0.17 0 0 "/>
+	  </xacro:hball>
+	  
+	  <gazebo>
+	    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+	      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+	      <robotNamespace>/myrobot</robotNamespace>
+	      <legacyModeNS>true</legacyModeNS>      
+	    </plugin>
+	  </gazebo>
+	  
+	
+</robot>
+

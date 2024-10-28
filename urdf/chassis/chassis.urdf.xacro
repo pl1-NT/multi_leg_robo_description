@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+   <xacro:macro name="chassis" params="parent *joint_origin">
+	<joint name="chassis_joint" type="fixed">
+		<xacro:insert_block name="joint_origin"/>
+		<parent link="${parent}"/>
+		<child link="chassis_link"/>
+	</joint>
+
+	<link name="chassis_link">
+		<visual>
+			<geometry>
+				<mesh filename="file://$(find multi_legged_robo_description)/meshes/body_6.stl" />
+			</geometry>
+			<material name="blue"/>
+		</visual>
+
+        //以下，gazeboで使うために追加で必要な情報（collision，inertial，gazebo reference）
+		<collision>
+			<geometry>
+				<mesh filename="file://$(find multi_legged_robo_description)/meshes/body_6.dae"/>
+			</geometry>
+		</collision>
+
+		<inertial>
+			<origin xyz="0 0 0.024"/>
+			<mass value="1.2"/>
+			<inertia ixx="0.00032" ixy="0.0" ixz="0" iyy="0.00029" iyz="0.0" izz="0.0005" />
+		</inertial>
+	</link>
+    //以下のコードがないと，gazeboで色を表示できない
+	<gazebo reference="chassis_link">
+			<material>Gazebo/Blue</material>
+			<turnGravityOff>false</turnGravityOff>
+	</gazebo>
+  </xacro:macro>
+</robot>
+
